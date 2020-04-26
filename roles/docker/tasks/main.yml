@@ -1,0 +1,9 @@
+---
+- include_tasks: docker_users.yml
+  when: docker_users is defined
+
+- import_tasks: install_docker.yml
+- import_tasks: add_insecure_registries.yml
+
+- include_tasks: tests.yml
+  when: run_tests

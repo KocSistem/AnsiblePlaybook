@@ -1,0 +1,6 @@
+---
+- name: install dotnet runtime
+  win_chocolatey:
+    name: dotnetcore-runtime
+    version: "{{ version }}"
+    state: "{{ state }}"

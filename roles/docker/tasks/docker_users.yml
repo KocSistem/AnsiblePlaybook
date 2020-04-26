@@ -1,0 +1,14 @@
+---
+- name: create docker group
+  group:
+    state: present
+    name: docker
+  become: yes
+
+- name: ensure docker users are added to the docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  with_items: "{{ docker_centos_users }}"
+  when: docker_centos_users is defined

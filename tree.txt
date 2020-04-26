@@ -1,0 +1,59 @@
+Folder PATH listing for volume OS
+Volume serial number is CC89-14ED
+C:.
+|   .dockerignore
+|   .gitignore
+|   cluster.yml
+|   Dockerfile
+|   dotnetcore-runtime.yml
+|   inventory.ini
+|   metrics.yml
+|   tree.txt
+|   
+\---roles
+    +---beats
+    |   +---defaults
+    |   |       main.yml
+    |   |       
+    |   +---handlers
+    |   |       main.yml
+    |   |       
+    |   +---tasks
+    |   |       main.yml
+    |   |       
+    |   \---templates
+    |           filebeat.yml
+    |           metricbeat.yml
+    |           winlogbeat.yml
+    |           
+    +---docker
+    |   +---defaults
+    |   |       main.yml
+    |   |       
+    |   +---handlers
+    |   |       main.yml
+    |   |       
+    |   \---tasks
+    |           add_insecure_registries.yml
+    |           docker_users.yml
+    |           install_docker.yml
+    |           main.yml
+    |           tests.yml
+    |           
+    +---dotnetcore-runtime
+    |   +---defaults
+    |   |       main.yml
+    |   |       
+    |   \---tasks
+    |           main.yml
+    |           
+    \---motd
+        +---defaults
+        |       main.yml
+        |       
+        +---tasks
+        |       main.yml
+        |       
+        \---templates
+                motd.j2
+                

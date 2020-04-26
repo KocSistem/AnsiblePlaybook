@@ -1,0 +1,14 @@
+---
+- name: mark internal docker registry as insecure
+  file: 
+    path: /etc/docker/daemon.json
+    state: touch
+
+- name: copy insecure registries content
+  copy:
+    content: |
+      {
+        "insecure-registries": [""]
+      }
+    dest: /etc/docker/daemon.json
+  notify: restart docker

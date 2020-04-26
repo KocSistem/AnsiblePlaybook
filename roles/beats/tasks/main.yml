@@ -1,0 +1,15 @@
+---
+- name: install beats
+  win_chocolatey:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: "{{ item.state }}"
+  with_items: "{{ beats_definitions }}" 
+
+- name: copy templates
+  template:
+    src: "{{ item.name }}.yml"
+    dest: C:\ProgramData\chocolatey\lib\{{ item.name }}\tools\{{ item.name }}.yml
+  with_items: 
+    - "{{ beats_definitions }}"
+  notify: "handle beat services"

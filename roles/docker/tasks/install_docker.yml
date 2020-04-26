@@ -1,0 +1,39 @@
+---
+- name: uninstall old versions
+  yum:
+    name:
+      - docker
+      - docker-client
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-engine
+    state: absent
+
+- name: install required packages
+  yum:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    update_cache: true
+
+- name: add repository
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: install docker
+  yum:
+    name:
+      - docker-ce{{ (docker_centos_version == "latest") | ternary('', "-{}".format(docker_centos_version))}}
+      - docker-ce-cli{{ (docker_centos_version == "latest") | ternary('', "-{}".format(docker_centos_version))}}
+      - containerd.io
+  become: true
+
+- name: ensure docker is started and enabled at boot
+  service:
+    name: docker
+    state: "{{ docker_service_state }}"
+    enabled: "{{ docker_service_enabled }}"

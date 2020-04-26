@@ -1,0 +1,6 @@
+---
+- name: Add motd
+  become: yes
+  template:
+    src: motd.j2
+    dest: /etc/motd

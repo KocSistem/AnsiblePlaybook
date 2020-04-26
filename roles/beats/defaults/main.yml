@@ -1,0 +1,20 @@
+---
+beats_definitions:
+  - { 
+      name: metricbeat, 
+      version: 7.4.2, 
+      state: present, 
+      servicestate: restarted 
+    }
+  - { 
+      name: filebeat, 
+      version: 7.4.2, 
+      state: present, 
+      servicestate: restarted 
+    }
+  - { 
+      name: winlogbeat, 
+      version: 7.4.2, 
+      state: present, 
+      servicestate: restarted 
+    }

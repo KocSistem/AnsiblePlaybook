@@ -1,0 +1,22 @@
+---
+- name: ensure that docker service is running
+  service: 
+    name: docker
+    state: started
+    enabled: yes
+
+- name: assert that docker is installed
+  shell: docker version
+  register: version_of_docker
+
+- assert:
+    that:
+      - "'18.09.0' in version_of_docker.stdout"
+
+- name: assert that insecure registry added to daemon
+  shell: cat /etc/docker/daemon.json
+  register: content_of_daemon
+
+- assert:
+    that:
+      - "'mpl-dockerhub.hepsiburada.com' in content_of_daemon.stdout"

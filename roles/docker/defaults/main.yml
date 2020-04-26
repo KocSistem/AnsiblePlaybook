@@ -1,0 +1,12 @@
+---
+# defaults file for docker-ce centos
+docker_centos_users: []
+docker_centos_version: 18.09.0
+
+# desired state docker services
+docker_service_state: started
+docker_service_enabled: true
+docker_restart_handler_state: restarted
+
+# if you want to skip tests, set this flag to false
+run_tests: true

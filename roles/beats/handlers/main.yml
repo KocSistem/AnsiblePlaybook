@@ -1,0 +1,6 @@
+---
+- name: handle beat services
+  win_service:
+    name: "{{ item.name }}"
+    state: "{{ item.servicestate }}"
+  with_items: "{{ beats_definitions }}"

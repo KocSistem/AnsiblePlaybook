@@ -1,0 +1,4 @@
+---
+- hosts: dev-uat
+  roles:
+    - dotnetcore-runtime

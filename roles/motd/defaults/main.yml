@@ -1,0 +1,40 @@
+---
+    motd_signature: Ronesans team
+    motd_email: ronesans@kocsistem.com.tr
+
+    motd_header_message: This system is managed by {{ motd_system_name }} Team
+    motd_system_name: "{{ system_name }}"
+    
+    motd_info:
+      - " FQDN:    ": "{{ ansible_fqdn }}"
+      - " Distro:  ": "{{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }}"
+      - " Virtual: ": "{{ 'YES' if ansible_virtualization_role == 'guest' else 'NO' }}\n"
+      - " CPUs:    ": "{{ ansible_processor_vcpus }}"
+      - " RAM:     ": "{{ (ansible_memtotal_mb / 1000) | round(1) }}GB"
+
+    motd_type:  |
+
+      ____                                             
+      |  _ \  ___   _ __    ___  ___   __ _  _ __   ___ 
+      | |_) |/ _ \ | '_ \  / _ \/ __| / _` || '_ \ / __|
+      |  _ <| (_) || | | ||  __/\__ \| (_| || | | |\__ \
+      |_| \_\\___/ |_| |_| \___||___/ \__,_||_| |_||___/
+                                                      
+    
+    ag_motd_content: |
+    
+      --------------------------------------------------------------------------
+                          {{ motd_header_message }}
+      --------------------------------------------------------------------------
+    
+       {{ motd_type }}  
+
+      {% for item in motd_info %}
+      {% for key, value in item.items() | list %}
+      {{ key }}{{ value }}
+      {% endfor %}
+      {% endfor %}
+
+      Yours,
+      {{ motd_signature }}
+      email: {{ motd_email }} \n
